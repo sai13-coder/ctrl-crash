@@ -1,14 +1,19 @@
-// ctrl-crash.pinokio.ts
 export default defineApp({
   id: "ctrl-crash",
-  name: "Ctrl Crash Anonymous",
-  icon: "https://your-icon-link.png",
-  homepage: "https://github.com/your/repo",
+  name: "Ctrl Crash",
+  icon: "icon.png", // or direct URL
+  homepage: "https://github.com/AnthonyGosselin/Ctrl-Crash",
   async onInstall() {
-    await this.runCommand("git clone https://github.com/YOUR_USER/Ctrl-Crash-Anonymous.git");
-    await this.runCommand("conda env create -f environment.yaml", { cwd: "Ctrl-Crash-Anonymous" });
+    await this.runCommand(
+      "git clone https://github.com/AnthonyGosselin/Ctrl-Crash.git"
+    );
+    await this.runCommand("pip install -r requirements.txt", {
+      cwd: "Ctrl-Crash"
+    });
   },
   async onRun() {
-    await this.runCommand("conda activate ctrl-crash && python app.py", { cwd: "Ctrl-Crash-Anonymous" });
+    await this.runCommand("run_gen_videos.py", {
+      cwd: "Ctrl-Crash"
+    });
   }
 });
